@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.2
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: pytest
+  push-image:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Create and push image in Docker Hub
+          command: |
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+            docker build -t cocorico84/personal_site:$CIRCLE_SHA1 .
+            docker push cocorico84/personal_site:$CIRCLE_SHA1
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
+      - push-image:
+          requires:
+            - build-and-test
+      - heroku/deploy-via-git:
+          requires:
+            - push-image
+          filters:
+            branches:
+              only:
+                - master

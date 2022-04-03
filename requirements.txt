@@ -1,0 +1,11 @@
+asgiref 
+attrs 
+Django 
+more-itertools 
+packaging 
+pluggy 
+py 
+pyparsing 
+pytest 
+sqlparse 
+wcwidth

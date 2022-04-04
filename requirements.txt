@@ -9,3 +9,4 @@ pyparsing
 pytest 
 sqlparse 
 wcwidth
+gunicorn

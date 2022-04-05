@@ -10,3 +10,4 @@ pytest
 sqlparse 
 wcwidth
 gunicorn
+whitenoise

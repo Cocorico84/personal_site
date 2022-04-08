@@ -25,8 +25,8 @@ jobs:
           name: Create and push image in Docker Hub
           command: |
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker build -t cocorico84/personal_site .
-            docker push cocorico84/personal_site
+            docker build -t cocorico84/personal_site:latest .
+            docker push cocorico84/personal_site:latest
   deploy:
     docker:
       - image: cimg/python:3.8

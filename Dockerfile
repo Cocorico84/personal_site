@@ -3,13 +3,13 @@
 # ENV PYTHONDONTWRITEBYTECODE=1
 # ENV PYTHONUNBUFFERED=1
 
-# RUN mkdir /app 
+# RUN mkdir /app
 
 # COPY /app /app
-# COPY pyproject.toml /app 
+# COPY pyproject.toml /app
 
 # WORKDIR /app
-# ENV PYTHONPATH=${PYTHONPATH}:${PWD} 
+# ENV PYTHONPATH=${PYTHONPATH}:${PWD}
 
 # RUN pip install poetry
 

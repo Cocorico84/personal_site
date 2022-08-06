@@ -15,7 +15,9 @@ jobs:
       - run:
           name: Run tests
           # command: python manage.py test
-          command: docker-compose run web python3 manage.py test
+          command: |
+          touch .env
+          docker-compose run web python3 manage.py test
   push-image:
     docker:
       - image: cimg/python:3.8

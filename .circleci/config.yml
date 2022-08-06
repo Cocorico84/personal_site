@@ -42,7 +42,7 @@ workflows:
   sample:
     jobs:
       # - build-and-test
-      - push-image:
+      - push-image
           # requires:
           #   - build-and-test
       - deploy:

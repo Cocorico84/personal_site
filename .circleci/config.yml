@@ -5,17 +5,17 @@ orbs:
   heroku: circleci/heroku@1.2.6
 
 jobs:
-  # build-and-test:
-  #   docker:
-  #     - image: cimg/python:3.8
-  #   steps:
-  #     - checkout
-  #     - python/install-packages:
-  #         pkg-manager: pip
-  #     - run:
-  #         name: Run tests
-  #         command: python manage.py test
-          # command: docker-compose run web python3 manage.py test
+  build-and-test:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          # command: python manage.py test
+          command: docker-compose run web python3 manage.py test
   push-image:
     docker:
       - image: cimg/python:3.8
@@ -41,10 +41,10 @@ jobs:
 workflows:
   sample:
     jobs:
-      # - build-and-test
-      - push-image
-          # requires:
-          #   - build-and-test
+      - build-and-test
+      - push-image:
+          requires:
+            - build-and-test
       - deploy:
           requires:
             - push-image

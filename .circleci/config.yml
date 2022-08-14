@@ -16,7 +16,9 @@ jobs:
       - run:
           name: Run tests
           # command: python manage.py test
-          command: python -m pytest
+          command: |
+            pip install pytest
+            pytest
           # command: |
           #   touch .env
           #   docker-compose run web python3 manage.py test

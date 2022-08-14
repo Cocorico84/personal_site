@@ -11,6 +11,7 @@ services:
       - POSTGRES_PASSWORD=postgres
 
   web:
+    restart: always
     build: .
     env_file:
     - .env

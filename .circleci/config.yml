@@ -15,8 +15,7 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          # command: python manage.py test
-          command: pytest
+          command: python manage.py test
           # command: |
           #   touch .env
           #   docker-compose run web python3 manage.py test

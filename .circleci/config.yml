@@ -3,11 +3,12 @@ version: 2.1
 orbs:
   python: circleci/python@1.2
   heroku: circleci/heroku@1.2.6
+  pytest: thekevjames/pytest@0.0.60
 
 jobs:
   build-and-test:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/pytest:0.0.60
     steps:
       - checkout
       - setup_remote_docker
@@ -15,7 +16,8 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          command: python manage.py test
+          # command: python manage.py test
+          command: pytest
           # command: |
           #   touch .env
           #   docker-compose run web python3 manage.py test

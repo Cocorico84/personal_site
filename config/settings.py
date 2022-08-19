@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "app.apps.AppConfig",
-    "users.apps.UsersConfig",
+    # "app.apps.AppConfig",
+    "app",
+    "users",
     "detective",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -66,7 +68,11 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates", BASE_DIR / "app/templates"],
+        "DIRS": [
+            BASE_DIR / "templates",
+            BASE_DIR / "app/templates",
+            BASE_DIR / "blog/templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -142,6 +148,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
@@ -150,3 +160,5 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/"
+
+AUTH_USER_MODEL = "users.User"

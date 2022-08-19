@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    Accueil
+    N°{{ article.id }}
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    Mon site personnel
-</div>
+    {{ article.title }}
 {% endblock %}

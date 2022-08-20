@@ -72,6 +72,7 @@ TEMPLATES = [
             BASE_DIR / "templates",
             BASE_DIR / "app/templates",
             BASE_DIR / "blog/templates",
+            BASE_DIR / "users/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -160,5 +161,12 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 AUTH_USER_MODEL = "users.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}

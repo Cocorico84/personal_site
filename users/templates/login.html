@@ -1,0 +1,13 @@
+{% load rest_framework %}
+
+{% block body %}
+<body class="container">
+    <div>
+        <form action="{% url 'rest_framework:login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-secondary">Login</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

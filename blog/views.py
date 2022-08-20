@@ -6,6 +6,7 @@ from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
 
 # class ArticleViewSet(ModelViewSet):
@@ -41,3 +42,11 @@ class ArticleDetail(APIView):
         # serializer = ArticleSerializer(article)
         # return Response(serializer.data)
         return Response({"article": article})
+
+    # def patch(self, request, pk):
+    #     article = self.get_object(pk)
+    #     serializer = ArticleSerializer(article, data=request.data, partial=True)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response({"article": serializer.data})
+    #     return Response(status=HTTP_404_NOT_FOUND)

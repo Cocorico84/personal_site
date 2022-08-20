@@ -23,7 +23,7 @@ class ArticleList(APIView):
     template_name = "article.html"
 
     def get(self, request):
-        queryset = Article.objects.all()
+        queryset = Article.objects.order_by("-created_date")
         return Response({"articles": queryset})
 
 

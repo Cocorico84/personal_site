@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "corentinzheng.herokuapp.com"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "cocorico.pythonanywhere.com"]
 
 
 # Application definition
@@ -70,9 +70,6 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / "templates",
-            BASE_DIR / "app/templates",
-            BASE_DIR / "blog/templates",
-            BASE_DIR / "users/templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {

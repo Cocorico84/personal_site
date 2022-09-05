@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.2
-  heroku: circleci/heroku@1.2.6
 
 jobs:
   build-and-test:
@@ -15,13 +14,9 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          # command: python manage.py test
           command: |
             pip install pytest
             pytest
-          # command: |
-          #   touch .env
-          #   docker-compose run web python3 manage.py test
   push-image:
     docker:
       - image: cimg/python:3.8
@@ -40,9 +35,10 @@ jobs:
     steps:
     - checkout
     - run:
-        name: Deploy to Heroku
+        name: Deploy to Pythonanywhere
         command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/corentinzheng.git master
+            ssh-keyscan -H ssh.pythonanywhere.com >> ~/.ssh/known_hosts
+            ssh $SSH_USER@$SSH_HOST "cd personal_site; git pull";
 
 workflows:
   sample:
@@ -54,10 +50,3 @@ workflows:
       - deploy:
           requires:
             - push-image
-      # - heroku/deploy-via-git:
-          # requires:
-          #   - push-image
-          # filters:
-          #   branches:
-          #     only:
-          #       - master

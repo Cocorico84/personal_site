@@ -50,4 +50,3 @@ workflows:
       - deploy:
           requires:
             - push-image
-

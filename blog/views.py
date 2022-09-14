@@ -1,13 +1,13 @@
-from rest_framework.viewsets import ModelViewSet
-from .models import Article
-from .serializers import ArticleSerializer
+from django.http import Http404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.http import Http404
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
+from .models import Article
+from .serializers import ArticleSerializer
 
 # class ArticleViewSet(ModelViewSet):
 #     renderer_classes = (JSONRenderer, TemplateHTMLRenderer,)

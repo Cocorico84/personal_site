@@ -29,16 +29,6 @@ jobs:
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
             docker build -t cocorico84/personal_site .
             docker push cocorico84/personal_site
-  deploy:
-    docker:
-      - image: cimg/python:3.8
-    steps:
-    - checkout
-    - run:
-        name: Deploy to Pythonanywhere
-        command: |
-            ssh-keyscan -H ssh.pythonanywhere.com >> ~/.ssh/known_hosts
-            ssh $SSH_USER@$SSH_HOST "cd personal_site; git pull";
 
 workflows:
   sample:
@@ -47,6 +37,3 @@ workflows:
       - push-image:
           requires:
             - build-and-test
-      - deploy:
-          requires:
-            - push-image

@@ -15,7 +15,7 @@ spec:
         app: django
     spec:
       containers:
-        - image: cocorico84/personal_site
+        - image: cocorico84/personal_site:latest
           name: django
           ports:
             - containerPort: 8000

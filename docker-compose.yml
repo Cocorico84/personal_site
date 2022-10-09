@@ -19,7 +19,8 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - 8000:8000
+      - 5432:5432
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres

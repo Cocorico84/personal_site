@@ -13,4 +13,5 @@ COPY . /code/
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0000:", $PORT]
+# CMD ["python", "manage.py", "runserver", "0000:", $PORT]
+ENTRYPOINT ["python", "manage.py", "runserver", "0000:", $PORT]

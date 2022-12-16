@@ -15,15 +15,27 @@ services:
     build: .
     env_file:
     - .env
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: gunicorn config.wsgi --bind 0.0.0.0:8000 --keyfile=certs/key.pem --certfile=certs/cert.pem
+    command: gunicorn config.wsgi --bind 0.0.0.0:8000
     volumes:
       - .:/code
-    ports:
-      - 8000:8000
-      - 5432:5432
+    expose:
+      - 8000
+    # ports:
+    #   - 8000:8000
+    #   - 5432:5432
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+    volumes:
+      - ./certs:/etc/nginx/certs

@@ -13,6 +13,6 @@ router.register("places", PlaceView)
 
 
 urlpatterns = [
-    path("play", include(router.urls)),
+    path("play/", include(router.urls)),
     path("", TemplateView.as_view(template_name="game_index.html"), name="game"),
 ]

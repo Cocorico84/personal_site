@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     volumes:
-      - ../data/personal_site_db:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
@@ -15,19 +15,12 @@ services:
     build: .
     env_file:
     - .env
-    # command: gunicorn config.wsgi --bind 0.0.0.0:8000 --keyfile=certs/key.pem --certfile=certs/cert.pem
+    # command: gunicorn --certfile=./certs/cert.pem --keyfile=./certs/key.pem config.wsgi --bind 0.0.0.0:8000
     command: gunicorn config.wsgi --bind 0.0.0.0:8000
     volumes:
       - .:/code
     expose:
       - 8000
-    # ports:
-    #   - 8000:8000
-    #   - 5432:5432
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
 
@@ -39,3 +32,19 @@ services:
       - web
     volumes:
       - ./certs:/etc/nginx/certs
+
+  redis:
+    image: redis:alpine
+
+  celery:
+    build: .
+    command: "celery -A config worker -l info"
+    depends_on:
+      - web
+      - redis
+      - db
+    restart: always
+
+
+volumes:
+  postgres_data:

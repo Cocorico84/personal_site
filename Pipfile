@@ -25,6 +25,8 @@ typing-extensions = "==4.2.0"
 tzdata = "==2021.5"
 whitenoise = "==6.1.0"
 pre-commit = "*"
+redis = "*"
+celery = "*"
 
 [dev-packages]
 pre-commit = "*"

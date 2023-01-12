@@ -15,7 +15,10 @@ migrate:
 	docker compose run web python3 manage.py makemigrations
 	docker compose run web python3 manage.py migrate
 
+user:
+	docker compose run web python3 manage.py createsuperuser
+
 format:
 	pre-commit run --all-files
 
-.PHONY: up run migrate shell format
+.PHONY: up run migrate shell user format

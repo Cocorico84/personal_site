@@ -27,6 +27,7 @@ whitenoise = "==6.1.0"
 pre-commit = "*"
 redis = "*"
 celery = "*"
+rabbitmq = "*"
 
 [dev-packages]
 pre-commit = "*"

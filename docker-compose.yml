@@ -19,32 +19,38 @@ services:
     command: gunicorn config.wsgi --bind 0.0.0.0:8000
     volumes:
       - .:/code
-    expose:
-      - 8000
-    depends_on:
-      - db
-
-  nginx:
-    build: ./nginx
+    # expose:
+    #   - 8000
     ports:
-      - 1337:80
+      - 8000:8000
     depends_on:
-      - web
-    volumes:
-      - ./certs:/etc/nginx/certs
-
-  redis:
-    image: redis:alpine
-
-  celery:
-    build: .
-    command: "celery -A config worker -l info"
-    depends_on:
-      - web
-      - redis
       - db
-    restart: always
 
+  # nginx:
+  #   build: ./nginx
+  #   ports:
+  #     - 1337:80
+  #   depends_on:
+  #     - web
+  #   volumes:
+  #     - ./certs:/etc/nginx/certs
+
+  # redis:
+  #   image: redis:alpine
+
+  # celery:
+  #   build: .
+  #   command: "celery -A config worker -l info"
+  #   depends_on:
+  #     - web
+  #     - redis
+  #     - db
+  #   restart: always
+
+  # rabbitmq:
+  #   image: rabbitmq
+  #   ports:
+  #     - 5672:5672
 
 volumes:
   postgres_data:

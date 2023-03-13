@@ -4,11 +4,9 @@ services:
   db:
     image: postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - ./data/db:/var/lib/postgresql/data
+    env_file:
+      - "./.env"
 
   web:
     restart: always
@@ -51,6 +49,3 @@ services:
   #   image: rabbitmq
   #   ports:
   #     - 5672:5672
-
-volumes:
-  postgres_data:

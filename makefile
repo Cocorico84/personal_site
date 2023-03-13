@@ -1,8 +1,8 @@
 up:
 	docker compose up --build
 
-run:
-	python manage.py runserver
+# run:
+# 	python manage.py runserver
 
 # migrate:
 # 	python manage.py makemigrations

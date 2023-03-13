@@ -17,6 +17,14 @@ spec:
       containers:
         - image: cocorico84/personal_site:latest
           name: django
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
               name: gunicorn
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"

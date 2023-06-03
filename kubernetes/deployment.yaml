@@ -21,6 +21,7 @@ spec:
           ports:
             - containerPort: 8000
               name: gunicorn
+          command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
           resources:
             limits:
               memory: 512Mi

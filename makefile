@@ -21,4 +21,13 @@ user:
 format:
 	pre-commit run --all-files
 
-.PHONY: up run migrate shell user format
+run:
+	python manage.py runsslserver --certificate certs/cert.pem --key certs/key.pem
+
+build:
+	docker build . -t personal_site
+
+push:
+	docker push cocorico84/personal_site
+
+.PHONY: up run migrate shell user format run build push

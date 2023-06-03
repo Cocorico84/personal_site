@@ -18,4 +18,5 @@ COPY . /code/
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runsslserver", "--certificate", "certs/cert.pem", "--key", "certs/key.pem", "0.0.0.0:8000"]

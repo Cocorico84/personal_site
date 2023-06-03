@@ -10,3 +10,5 @@ dump.rdb
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+
+*.pem

@@ -28,6 +28,7 @@ pre-commit = "*"
 redis = "*"
 celery = "*"
 rabbitmq = "*"
+django-sslserver = "*"
 
 [dev-packages]
 pre-commit = "*"

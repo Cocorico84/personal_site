@@ -13,7 +13,7 @@ services:
     build: .
     env_file:
     - .env
-    # command: gunicorn --certfile=./certs/cert.pem --keyfile=./certs/key.pem config.wsgi --bind 0.0.0.0:8000
+    # command: gunicorn --certfile=./infra/certs/cert.pem --keyfile=./infra/certs/key.pem config.wsgi --bind 0.0.0.0:8000
     command: gunicorn config.wsgi --bind 0.0.0.0:8000
     volumes:
       - .:/code
@@ -23,6 +23,13 @@ services:
       - 8000:8000
     depends_on:
       - db
+
+  # jenkins:
+  #   image: jenkins/jenkins:lts
+  #   ports:
+  #     - 8080:8080
+  #     - 50000:50000
+
 
   # nginx:
   #   build: ./nginx
